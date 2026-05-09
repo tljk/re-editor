@@ -493,6 +493,11 @@ class _CodeInputController extends ChangeNotifier implements DeltaTextInputClien
     ).appendPrefixIfNecessary();
   }
 
+  @override
+  bool onFocusReceived() {
+    return false;
+  }
+
 }
 
 class _SmartTextEditingDelta {

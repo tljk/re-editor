@@ -691,7 +691,7 @@ extension _TextEditingValueExtension on TextEditingValue {
 
   bool get startWithPrefix => text.startsWith(_kPrefix);
 
-  bool get usePrefix => kIsIOS || kIsAndroid;
+  bool get usePrefix => kIsIOS || kIsAndroid || kIsOhos;
 
   TextEditingValue appendPrefixIfNecessary() {
     if (!usePrefix) {

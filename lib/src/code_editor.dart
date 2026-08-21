@@ -383,7 +383,7 @@ class _CodeEditorState extends State<CodeEditor> {
     _scrollController.bindEditor(_editorKey);
     _chunkController = CodeChunkController(_editingController, widget.chunkAnalyzer ?? const DefaultCodeChunkAnalyzer());
 
-    _selectionOverlayController = kIsAndroid || kIsIOS ? _MobileSelectionOverlayController(
+    _selectionOverlayController = kIsAndroid || kIsIOS || kIsOhos ? _MobileSelectionOverlayController(
       context: context,
       controller: _editingController,
       editorKey: _editorKey,
@@ -558,7 +558,7 @@ class _CodeEditorState extends State<CodeEditor> {
       child: editable
     );
     final Widget child;
-    if (kIsAndroid || kIsIOS) {
+    if (kIsAndroid || kIsIOS || kIsOhos) {
       child = Focus(
         autofocus: autofocus,
         focusNode: _focusNode,

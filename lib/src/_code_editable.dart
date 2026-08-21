@@ -323,7 +323,7 @@ class _CodeEditableState extends State<_CodeEditable> with AutomaticKeepAliveCli
     _updateAutoCompleteState(false);
     updateKeepAlive();
     if (!widget.focusNode.hasFocus) {
-      if (kIsAndroid || kIsIOS) {
+      if (kIsAndroid || kIsIOS || kIsOhos) {
         widget.controller.cancelSelection();
       }
       widget.selectionOverlayController.hideHandle();
@@ -457,7 +457,7 @@ class _CodeCursorBlinkController extends ValueNotifier<bool> {
       _timer!.cancel();
     }
     _timer = Timer.periodic(_kCursorBlinkHalfPeriod, _cursorTick);
-    if (kIsAndroid || kIsIOS) {
+    if (kIsAndroid || kIsIOS || kIsOhos) {
       // Wait selection position to update
       Future.delayed(const Duration(milliseconds: 100), () {
         value = true;

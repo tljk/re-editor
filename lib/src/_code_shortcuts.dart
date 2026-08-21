@@ -37,7 +37,7 @@ class _CodeShortcutsState extends State<_CodeShortcuts> {
     _shortcuts.clear();
     for (final CodeShortcutType type in CodeShortcutType.values) {
       if (type == CodeShortcutType.backspace) {
-        if (kIsAndroid || kIsIOS) {
+        if (kIsAndroid || kIsIOS || kIsOhos) {
           continue;
         }
       }

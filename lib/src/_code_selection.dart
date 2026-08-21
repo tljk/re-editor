@@ -161,7 +161,7 @@ class _CodeSelectionGestureDetectorState extends State<_CodeSelectionGestureDete
     }
   }
 
-  bool get _isMobile => kIsAndroid || kIsIOS;
+  bool get _isMobile => kIsAndroid || kIsIOS || kIsOhos;
 
   bool get _isShiftPressed => _isMobile ? false : HardwareKeyboard.instance.logicalKeysPressed
     .any(<LogicalKeyboardKey>{
@@ -523,7 +523,7 @@ class _MobileSelectionOverlayController implements _SelectionOverlayController {
   }
 
   TextSelectionControls get selectionControls {
-    if (kIsAndroid) {
+    if (kIsAndroid || kIsOhos) {
       return materialTextSelectionControls;
     } else {
       return cupertinoTextSelectionControls;
@@ -786,7 +786,7 @@ class _MobileSelectionOverlayController implements _SelectionOverlayController {
       controller.selection = newSelection;
       return;
     }
-    if (kIsAndroid) {
+    if (kIsAndroid || kIsOhos) {
       newSelection = CodeLineSelection(
         baseIndex: position.index,
         baseOffset: position.offset,
@@ -865,7 +865,7 @@ class _MobileSelectionOverlayController implements _SelectionOverlayController {
       return;
     }
 
-    if (kIsAndroid) {
+    if (kIsAndroid || kIsOhos) {
       newSelection = CodeLineSelection(
         baseIndex: controller.selection.baseIndex,
         baseOffset: controller.selection.baseOffset,

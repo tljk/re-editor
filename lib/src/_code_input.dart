@@ -140,6 +140,15 @@ class _CodeInputController extends ChangeNotifier implements DeltaTextInputClien
       return;
     }
 
+    if (_remoteEditingValue != null &&
+        textEditingDeltas.isNotEmpty &&
+        textEditingDeltas.first.oldText != _remoteEditingValue!.text) {
+      if (_hasInputConnection) {
+        _textInputConnection!.setEditingState(_remoteEditingValue!);
+      }
+      return;
+    }
+
     if (textEditingDeltas.any((delta) => delta is TextEditingDeltaInsertion && delta.textInserted == '\n')) {
       TextEditingValue newValue = _remoteEditingValue!;
       for (final TextEditingDelta delta in textEditingDeltas) {
@@ -689,7 +698,7 @@ extension _TextEditingValueExtension on TextEditingValue {
 
   bool get startWithPrefix => text.startsWith(_kPrefix);
 
-  bool get usePrefix => kIsIOS || kIsAndroid;
+  bool get usePrefix => kIsIOS || kIsAndroid || kIsOhos;
 
   TextEditingValue appendPrefixIfNecessary() {
     if (!usePrefix) {
